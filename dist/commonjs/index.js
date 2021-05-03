@@ -59,14 +59,13 @@ var Cache = function () {
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       this.services = services;
-      this.options = utils.defaults(options, this.options || {}, getDefaults());
+      this.options = defaults(options, this.options || {}, getDefaults());
     }
   }, {
     key: 'read',
     value: function read(language, namespace, callback) {
       var _this = this;
 
-      var store = {};
       var nowMS = new Date().getTime();
 
       if (!_asyncStorage2.default) {
@@ -79,7 +78,6 @@ var Cache = function () {
           if (
           // expiration field is mandatory, and should not be expired
           local.i18nStamp && local.i18nStamp + _this.options.expirationTime > nowMS &&
-
           // there should be no language version set, or if it is, it should match the one in translation
           _this.options.versions[language] === local.i18nVersion) {
             delete local.i18nVersion;

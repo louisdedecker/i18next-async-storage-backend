@@ -36,6 +36,7 @@
     "@react-native-community/async-storage": "*"
   },
   "scripts": {
+    "prepare": "npm run build",
     "clean": "rimraf dist && mkdirp dist",
     "copy": "cp ./dist/umd/i18nextAsyncStorageBackend.min.js ./i18nextAsyncStorageBackend.min.js && cp ./dist/umd/i18nextAsyncStorageBackend.js ./i18nextAsyncStorageBackend.js",
     "build:es": "BABEL_ENV=jsnext babel src --out-dir dist/es",

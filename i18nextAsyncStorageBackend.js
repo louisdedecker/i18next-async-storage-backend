@@ -1,8 +1,10 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.i18nextAsyncStorageBackend = factory());
-}(this, (function () { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@react-native-community/async-storage')) :
+	typeof define === 'function' && define.amd ? define(['@react-native-community/async-storage'], factory) :
+	(global.i18nextAsyncStorageBackend = factory(global.AsyncStorage));
+}(this, (function (AsyncStorage) { 'use strict';
+
+AsyncStorage = 'default' in AsyncStorage ? AsyncStorage['default'] : AsyncStorage;
 
 var arr = [];
 var each = arr.forEach;
@@ -22,9 +24,6 @@ function defaults(obj) {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// get from whatever version of react native that is being used.
-var AsyncStorage = require('@react-native-community/async-storage') || {};
 
 var storage = {
   setItem: function setItem(key, value) {

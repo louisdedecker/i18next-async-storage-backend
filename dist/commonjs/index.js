@@ -10,22 +10,25 @@ var _utils = require('./utils');
 
 var utils = _interopRequireWildcard(_utils);
 
+var _asyncStorage = require('@react-native-community/async-storage');
+
+var _asyncStorage2 = _interopRequireDefault(_asyncStorage);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// get from whatever version of react native that is being used.
-var AsyncStorage = require('@react-native-community/async-storage') || {};
-
 var storage = {
   setItem: function setItem(key, value) {
-    if (AsyncStorage) {
-      return AsyncStorage.setItem(key, value);
+    if (_asyncStorage2.default) {
+      return _asyncStorage2.default.setItem(key, value);
     }
   },
   getItem: function getItem(key, value) {
-    if (AsyncStorage) {
-      return AsyncStorage.getItem(key, value);
+    if (_asyncStorage2.default) {
+      return _asyncStorage2.default.getItem(key, value);
     }
     return undefined;
   }
@@ -66,7 +69,7 @@ var Cache = function () {
       var store = {};
       var nowMS = new Date().getTime();
 
-      if (!AsyncStorage) {
+      if (!_asyncStorage2.default) {
         return callback(null, null);
       }
 
@@ -94,7 +97,7 @@ var Cache = function () {
   }, {
     key: 'save',
     value: function save(language, namespace, data) {
-      if (AsyncStorage) {
+      if (_asyncStorage2.default) {
         data.i18nStamp = new Date().getTime();
 
         // language version (if set)

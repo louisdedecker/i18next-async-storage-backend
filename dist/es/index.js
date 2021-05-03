@@ -1,27 +1,8 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.i18nextAsyncStorageBackend = factory());
-}(this, (function () { 'use strict';
-
-var arr = [];
-var each = arr.forEach;
-var slice = arr.slice;
-
-function defaults(obj) {
-  each.call(slice.call(arguments, 1), function (source) {
-    if (source) {
-      for (var prop in source) {
-        if (obj[prop] === undefined) obj[prop] = source[prop];
-      }
-    }
-  });
-  return obj;
-}
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+import * as utils from './utils';
 
 // get from whatever version of react native that is being used.
 var AsyncStorage = require('@react-native-community/async-storage') || {};
@@ -65,7 +46,7 @@ var Cache = function () {
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
       this.services = services;
-      this.options = defaults(options, this.options || {}, getDefaults());
+      this.options = utils.defaults(options, this.options || {}, getDefaults());
     }
   }, {
     key: 'read',
@@ -122,6 +103,4 @@ var Cache = function () {
 
 Cache.type = 'backend';
 
-return Cache;
-
-})));
+export default Cache;

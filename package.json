@@ -10,7 +10,9 @@
   ],
   "homepage": "https://github.com/timbrandin/i18next-async-storage-backend",
   "bugs": "https://github.com/timbrandin/i18next-async-storage-backend/issues",
-  "dependencies": {},
+  "dependencies": {
+    "@react-native-community/async-storage": "1.12.1"
+  },
   "devDependencies": {
     "babel-cli": "6.23.0",
     "babel-core": "6.23.1",
